@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.odix.fr.model.Administrateur;
-import com.odix.fr.service.AdministrateurService;
+import com.odix.fr.service.UtilisateurService;
 
 @Service
 public class AdministrateurConsumers {
@@ -17,7 +17,8 @@ public class AdministrateurConsumers {
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	
 	@Autowired
-	AdministrateurService administrateurService;
+	UtilisateurService utilisateurService;
+	/***** Utilisateur de DTYPE Administrateur *****/
 	
     @KafkaListener(topics = "add-administrateur-topic")
     public void addAdministrateurConsumer(String message) throws IOException {
@@ -27,7 +28,9 @@ public class AdministrateurConsumers {
         	OBJECT_MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         	Administrateur administrateur = OBJECT_MAPPER.readValue(message, Administrateur.class);
         	
-            this.administrateurService.addAdministrateur(administrateur);
+            //this.administrateurService.addAdministrateur(administrateur);
+            this.utilisateurService.addUtilisateur(administrateur);
+            
         }catch(Exception e){
             e.printStackTrace();
         }

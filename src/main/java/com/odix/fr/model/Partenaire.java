@@ -2,11 +2,8 @@ package com.odix.fr.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
@@ -33,11 +30,7 @@ public class Partenaire extends Utilisateur implements Serializable {
 	 * etatPartenaire : Actif/Inactif
 	 * utilisateur : @ManyToOne
 	 */
-	
-	@Column
-	@Enumerated(EnumType.STRING)
-	private Etat etatPartenaire;
-	
+
 	// Pour regrouper les partenaires par IdUtilisateur : qui a inséré ce partenaire (pour le moment c'est l'Administrateur)
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
 	private Utilisateur utilisateur;
@@ -45,14 +38,6 @@ public class Partenaire extends Utilisateur implements Serializable {
 	
 	public Partenaire() {
 		super();
-	}
-
-	public Etat getEtatPartenaire() {
-		return etatPartenaire;
-	}
-
-	public void setEtatPartenaire(Etat etatPartenaire) {
-		this.etatPartenaire = etatPartenaire;
 	}
 
 	public Utilisateur getUtilisateur() {

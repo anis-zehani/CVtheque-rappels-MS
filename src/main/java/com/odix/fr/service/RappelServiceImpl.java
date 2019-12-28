@@ -43,6 +43,7 @@ public class RappelServiceImpl implements RappelService{
 	public List<Rappel> getAllRappelsByToday(UUID idUtilisateur) {
 		
 		Utilisateur utilisateur = utilisateurService.getUtilisateurById(idUtilisateur);
+		
 		LocalDate dateToday = LocalDate.now(); 
 		
 	    return rappelRepository.findByToday(dateToday, utilisateur);

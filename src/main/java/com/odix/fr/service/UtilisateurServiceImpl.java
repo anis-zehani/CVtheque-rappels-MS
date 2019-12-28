@@ -31,7 +31,6 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 	//Modifier un utilisateur
 	public Utilisateur editUtilisateur(Utilisateur utilisateur) {
 		
-		//L'Update url photo se fait en haut dans la fonction addPhotoToUtilisateur
 		if(utilisateurRepository.existsById(utilisateur.getId()) && 
 		   utilisateur.getIdentite() != "" && 
 		   utilisateur.getEmail() != "") {
