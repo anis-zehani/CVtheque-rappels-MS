@@ -18,10 +18,12 @@ spec:
     spec:
       containers:
       - name: rappels-container
-        image: registry.gitlab.com/gitlabodix/rappels-ms
+        image: registry.gitlab.com/gitlabodix/cvtheque-rappels-ms-prod
         imagePullPolicy: Always
         ports:
         - containerPort: 8003
+      imagePullSecrets:
+      - name: gitlab-secrets
 ---
 apiVersion: v1
 kind: Service
