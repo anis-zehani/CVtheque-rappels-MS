@@ -3,23 +3,24 @@ kind: Deployment
 metadata:
   name: rappels-deployment
   labels:
-    app: rappels
+    app: rappels-MS
 spec:
-  replicas: 1 #  tells deployment to run 1 pod matching the template
+  replicas: 1
   selector:
     matchLabels:
-      app: rappels
+      app: rappels-MS
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: rappels
+        app: rappels-MS
     spec:
       containers:
       - name: rappels-container
         image: registry.gitlab.com/gitlabodix/cvtheque-rappels-ms-prod
-        imagePullPolicy: Always
+        args: ["--spring.profiles.active=prod"]
+        imagePullPolicy: Never
         ports:
         - containerPort: 8003
       imagePullSecrets:
@@ -31,7 +32,7 @@ metadata:
   name: rappels-service
 spec:
   selector:
-    app: rappels
+    app: rappels-MS
   ports:
     - port: 8003
       targetPort: 8003
