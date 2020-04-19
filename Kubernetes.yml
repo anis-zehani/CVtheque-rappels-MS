@@ -3,18 +3,18 @@ kind: Deployment
 metadata:
   name: rappels-deployment
   labels:
-    app: rappels-MS
+    app: rappels
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: rappels-MS
+      app: rappels
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: rappels-MS
+        app: rappels
     spec:
       containers:
       - name: rappels-container
@@ -29,10 +29,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rappels-service
+  name: rappels-ms
 spec:
   selector:
-    app: rappels-MS
+    app: rappels
   ports:
     - port: 8003
       targetPort: 8003
